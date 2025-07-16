@@ -1,3 +1,6 @@
+"use client"
+
+
 import React, { ElementRef, useRef, useState } from "react";
 import { List } from "@prisma/client";
 import { toast } from "sonner";

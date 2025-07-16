@@ -10,6 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.27.0",
     "@clerk/nextjs": "^4.29.3",
     "@hello-pangea/dnd": "^16.3.0",
     "@prisma/client": "^5.6.0",
@@ -37,6 +38,7 @@
     "tailwindcss-animate": "^1.0.7",
     "unsplash-js": "^7.0.18",
     "usehooks-ts": "^2.9.1",
+    "uuid": "^11.1.0",
     "zod": "^3.22.4",
     "zustand": "^4.4.7"
   },

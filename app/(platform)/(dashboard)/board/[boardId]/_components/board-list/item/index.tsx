@@ -1,3 +1,6 @@
+"use client"
+
+
 import { ListWithCards } from "@/types";
 import React, { ElementRef, useRef, useState } from "react";
 import ListHeader from "../header";
