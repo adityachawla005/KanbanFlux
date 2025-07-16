@@ -1,5 +1,4 @@
 "use client";
-
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import useCardModal from "@/hooks/use-card-modal";
 import { fetcher } from "@/lib/fetcher";
@@ -34,7 +33,6 @@ const CardModal = () => {
     if (cardData?.mediaUrl) {
       setMediaUrl(cardData.mediaUrl);
       setMediaError(false);
-      console.log("🔍 Video URL from cardData:", cardData.mediaUrl);
     }
   }, [cardData]);
 
@@ -60,7 +58,6 @@ const CardModal = () => {
         ) : (
           <CardModalHeader.Skeleton />
         )}
-
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
           <div className="col-span-3 space-y-6">
             {/* Media Preview */}
@@ -74,7 +71,6 @@ const CardModal = () => {
                 Your browser does not support the video tag.
               </video>
             )}
-
             {!mediaError && mediaUrl && cardData?.mediaType === "audio" && (
               <audio
                 controls
@@ -85,26 +81,22 @@ const CardModal = () => {
                 Your browser does not support the audio tag.
               </audio>
             )}
-
             {mediaError && (
               <div className="text-center text-red-500">
                 Media failed to load. Please close and reopen the modal.
               </div>
             )}
-
             {cardData ? (
               <CardModalDescription data={cardData} />
             ) : (
               <CardModalDescription.Skeleton />
             )}
-
             {auditLogsData ? (
               <CardModalActivity items={auditLogsData} />
             ) : (
               <CardModalActivity.Skeleton />
             )}
           </div>
-
           {cardData ? (
             <CardModalActions data={cardData} />
           ) : (
