@@ -1,5 +1,7 @@
 # Fullstack kanban Trello Board with Media Integration: Next.js 14, Server Actions, React, Prisma, Stripe, Tailwind, MySQL
 
+https://kanban-flux.vercel.app
+
 Key Features:
 - Auth 
 -Board
