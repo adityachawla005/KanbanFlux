@@ -15,8 +15,4 @@ COPY app.py extract.py ./
 EXPOSE 5001
 
 # --preload shares the already-loaded spaCy model across workers
-CMD ["gunicorn", "app:app", \
-     "--bind", "0.0.0.0:5001", \
-     "--workers", "1", \
-     "--timeout", "60", \
-     "--preload"]
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 60 --preload
