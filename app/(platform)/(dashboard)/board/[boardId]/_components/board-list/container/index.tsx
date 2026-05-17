@@ -4,6 +4,7 @@ import { ListWithCards } from "@/types";
 import React, { useCallback, useEffect, useState } from "react";
 import ListForm from "../form";
 import ListItem from "../item";
+import TaskExtractor from "@/components/task-extractor";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { useAction } from "@/hooks/use-action";
 import { updateListOrder } from "@/actions/update-list-order";
@@ -122,24 +123,27 @@ const ListContainer = ({ data }: IListContainerProps) => {
   );
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="lists" type="list" direction="horizontal">
-        {(provided) => (
-          <ol
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            className="flex gap-x-3 h-full"
-          >
-            {orderedData.map((list, idx) => (
-              <ListItem key={list.id} index={idx} data={list} />
-            ))}
-            {provided.placeholder}
-            <ListForm />
-            <div className="flex-shrink-0 w-1" />
-          </ol>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="lists" type="list" direction="horizontal">
+          {(provided) => (
+            <ol
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="flex gap-x-3 h-full"
+            >
+              {orderedData.map((list, idx) => (
+                <ListItem key={list.id} index={idx} data={list} />
+              ))}
+              {provided.placeholder}
+              <ListForm />
+              <div className="flex-shrink-0 w-1" />
+            </ol>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <TaskExtractor lists={orderedData} />
+    </>
   );
 };
 

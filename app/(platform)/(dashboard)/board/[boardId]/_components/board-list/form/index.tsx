@@ -66,7 +66,8 @@ const ListForm = () => {
         <form
           ref={formRef}
           action={onSubmit}
-          className="w-full p-2 rounded-md bg-white space-y-4 shadow-md"
+          className="w-full p-3 rounded-lg space-y-3 shadow-xl"
+          style={{ background: "rgba(15,17,21,0.96)", border: "1px solid rgba(255,255,255,0.08)" }}
         >
           <FormInput
             id="title"
@@ -96,7 +97,10 @@ const ListForm = () => {
     <ListWrapper>
       <button
         onClick={enableEditing}
-        className="w-full rounded-md bg-white/80 hover:bg-white/50 transition p-3 flex items-center font-medium text-sm"
+        className="w-full rounded-lg p-3 flex items-center font-medium text-sm text-white/60 hover:text-white transition-colors duration-150"
+        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.06)" }}
+        onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
+        onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
       >
         <Plus className="h-4 w-4 mr-2" />
         Add a list

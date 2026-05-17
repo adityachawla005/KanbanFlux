@@ -50,7 +50,7 @@ const BoardIdLayout = async ({
   });
 
   if (!board) {
-    notFound();
+    redirect(`/organization/${orgId}`);
   }
 
   return (

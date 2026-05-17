@@ -191,7 +191,8 @@ const BoardListCardForm = forwardRef<
       <form
         ref={formRef}
         action={onCardCreateSubmit}
-        className="m-2 p-4 space-y-4 bg-white/80 rounded-xl shadow-lg backdrop-blur-sm"
+        className="m-2 p-3 space-y-3 rounded-lg shadow-lg"
+        style={{ background: "rgba(20,24,30,0.97)", border: "1px solid rgba(255,255,255,0.08)" }}
       >
         <FormTextarea
           id="title"
@@ -224,13 +225,13 @@ const BoardListCardForm = forwardRef<
         )}
 
         <div className="flex justify-center gap-4">
-          <Button type="submit" className="bg-black text-white hover:bg-gray-900" size="icon">
+          <Button type="submit" size="icon" className="h-8 w-8 rounded-md bg-[#00e599] text-black hover:bg-[#00d48a]">
             <Plus className="h-4 w-4" />
           </Button>
           <Button
             type="button"
-            className="bg-black text-white hover:bg-gray-900"
             size="icon"
+            className="h-8 w-8 rounded-md bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
             onClick={() => {
               stopRecording();
               setMediaBlob(null);
@@ -245,8 +246,8 @@ const BoardListCardForm = forwardRef<
           {mediaBlob ? (
             <Button
               type="button"
-              className="bg-black text-white hover:bg-gray-900"
               size="icon"
+              className="h-8 w-8 rounded-md bg-red-500/10 text-red-400 hover:bg-red-500/20"
               onClick={() => {
                 setMediaBlob(null);
                 setMediaType(null);
@@ -258,18 +259,16 @@ const BoardListCardForm = forwardRef<
             <>
               <Button
                 type="button"
-                className="bg-black text-white hover:bg-gray-900"
                 size="icon"
+                className="h-8 w-8 rounded-md bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
                 onClick={() => fileInputRef.current?.click()}
               >
                 <Paperclip className="h-4 w-4" />
               </Button>
               <Button
                 type="button"
-                className={`bg-black text-white hover:bg-gray-900 ${
-                  recording ? "animate-pulse" : ""
-                }`}
                 size="icon"
+                className={`h-8 w-8 rounded-md bg-white/5 text-white/60 hover:bg-white/10 hover:text-white ${recording ? "animate-pulse !bg-red-500/20 !text-red-400" : ""}`}
                 onClick={recording ? stopRecording : startRecording}
               >
                 <Mic className="h-4 w-4" />
@@ -295,7 +294,7 @@ const BoardListCardForm = forwardRef<
         size="sm"
         variant="ghost"
         onClick={enableEditing}
-        className="h-auto px-2 py-1.5 w-full justify-start text-muted-foreground text-sm hover:bg-muted"
+        className="h-auto px-2 py-1.5 w-full justify-start text-white/35 text-sm hover:text-white/70 hover:bg-white/5"
       >
         <Plus className="h-4 w-4 mr-2" />
         Add a card

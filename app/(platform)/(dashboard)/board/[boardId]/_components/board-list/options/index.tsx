@@ -53,43 +53,48 @@ const ListOptions = ({ onAddCard, data }: IListOptionsProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="h-auto w-auto p-2 hover:bg-black/5" variant="ghost">
+        <Button className="h-auto w-auto p-1.5 text-white/40 hover:text-white hover:bg-white/5" variant="ghost">
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="bottom" align="start" className="px-0 pt-3 pb-3">
-        <div className="text-sm font-medium text-center text-neutral-600 pb-4">
-          List actions
+      <PopoverContent
+        side="bottom"
+        align="start"
+        className="px-0 pt-3 pb-3"
+        style={{ background: "#0f1117", border: "1px solid rgba(255,255,255,0.08)" }}
+      >
+        <div className="text-xs font-medium text-center pb-3" style={{ color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em" }}>
+          LIST ACTIONS
         </div>
         <PopoverClose asChild>
           <Button
             ref={closePopoverRef}
-            className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600"
+            className="h-auto w-auto p-2 absolute top-2 right-2 text-white/40 hover:text-white hover:bg-white/5"
             variant="ghost"
           >
             <X className="h-4 w-4" />
           </Button>
         </PopoverClose>
         <Button
-          className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
+          className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm text-white/70 hover:text-white hover:bg-white/5"
           variant="ghost"
           onClick={onAddCard}
         >
-          Add card...
+          Add card
         </Button>
         <form action={onListCopyFormSubmit}>
           <FormSubmit
             variant="ghost"
-            className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
+            className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm text-white/70 hover:text-white hover:bg-white/5"
           >
-            Copy list...
+            Copy list
           </FormSubmit>
         </form>
-        <Separator />
+        <Separator className="my-1 bg-white/8" />
         <form action={onListDeleteFormSubmit}>
           <FormSubmit
             variant="ghost"
-            className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
+            className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10"
           >
             Delete this list
           </FormSubmit>

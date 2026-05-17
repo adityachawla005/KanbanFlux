@@ -18,7 +18,8 @@ const BoardListCardItem = ({ data, index }: IBoardListCardItemProps) => {
           ref={provided.innerRef}
           role={"button"}
           onClick={() => cardModal.onOpen(data.id)}
-          className="truncate border-2 border-transparent hover:border-black py-2 px-3 bg-white text-sm rounded-md shadow-sm"
+          className="truncate border border-white/5 hover:border-[#00e599]/30 py-2 px-3 text-white/80 hover:text-white text-sm rounded-md shadow-sm transition-all duration-150"
+          style={{ background: "rgba(30,35,42,0.95)" }}
         >
           {data.title}
         </div>

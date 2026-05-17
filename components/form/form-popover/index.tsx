@@ -66,14 +66,15 @@ const FormPopover = ({
         className="w-80 pt-3"
         side={side}
         sideOffset={sideOffset}
+        style={{ background: "#0f1117", border: "1px solid rgba(255,255,255,0.08)" }}
       >
-        <div className="text-sm font-medium text-center text-neutral-600 pb-4">
+        <div className="text-xs font-medium text-center pb-4 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em" }}>
           Create Board
         </div>
         <PopoverClose asChild ref={closeRef}>
           <Button
             variant="ghost"
-            className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600"
+            className="h-auto w-auto p-2 absolute top-2 right-2 text-white/40 hover:text-white hover:bg-white/5"
           >
             <X className="h-4 w-4" />
           </Button>

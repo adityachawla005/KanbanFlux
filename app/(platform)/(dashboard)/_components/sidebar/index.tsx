@@ -69,14 +69,14 @@ const Sidebar = ({ storageKey = "t-sidebar-state" }: ISidebarProps) => {
 
   return (
     <>
-      <div className="font-medium text-xs flex items-center mb-1">
-        <span className="pl-4">Workspaces</span>
+      <div className="font-medium text-xs flex items-center mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <span className="pl-4 uppercase tracking-widest" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>Workspaces</span>
         <Button
           asChild
           type="button"
           size="icon"
           variant="ghost"
-          className="ml-auto"
+          className="ml-auto text-white/40 hover:text-white/70 hover:bg-white/5"
         >
           <Link href="/select-org">
             <Plus className="h-4 w-4" />

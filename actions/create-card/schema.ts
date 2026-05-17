@@ -9,6 +9,7 @@ export const CreateCardSchema = z
       })
       .min(3, { message: "Title is too short" }),
     listId: z.string(),
+    description: z.string().optional(),
     mediaUrl: z.string().url().optional(),
     mediaType: z.enum(["audio", "video"]).optional(),
   })

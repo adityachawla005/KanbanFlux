@@ -3,7 +3,6 @@ import { stripeRedirect } from "@/actions/stripe-redirect";
 import { Button } from "@/components/ui/button";
 import { useAction } from "@/hooks/use-action";
 import useProModal from "@/hooks/use-pro-modal";
-import { error } from "console";
 import React from "react";
 import { toast } from "sonner";
 
@@ -30,9 +29,14 @@ const SubscriptionButton = ({ isPro }: ISubscriptionButtonProps) => {
   };
 
   return (
-    <Button variant="primary" disabled={isLoading} onClick={onClick}>
-      {isPro ? "Manage subscription" : "Upgrade to pro"}
-    </Button>
+    <button
+      disabled={isLoading}
+      onClick={onClick}
+      className="inline-flex items-center rounded-[6px] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      style={{ fontSize: "13px", padding: "8px 18px", background: "#00e599", color: "#050505" }}
+    >
+      {isPro ? "Manage subscription" : "Upgrade to Pro"}
+    </button>
   );
 };
 

@@ -62,7 +62,7 @@ const ListHeader = ({ data, onAddCard }: IListHeaderProps) => {
   useEventListener("keydown", onKeyDown);
 
   return (
-    <div className="pt-2 px-2 text-sm font-semibold flex justify-between items-start gap-x-2">
+    <div className="pt-2 px-2 text-sm font-semibold flex justify-between items-start gap-x-2 text-white/80">
       {isEditing ? (
         <form action={onSubmit} ref={formRef} className="flex-1 px-0.5">
           <FormInput
@@ -72,13 +72,13 @@ const ListHeader = ({ data, onAddCard }: IListHeaderProps) => {
             defaultValue={title}
             errors={fieldErrors}
             placeholder="Enter list title.."
-            className="text-sm px-[7px] py-1 h-7 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white"
+            className="text-sm px-[7px] py-1 h-7 font-medium border-transparent hover:border-white/20 focus:border-white/30 transition truncate bg-white/5 text-white focus:bg-white/10"
           />
         </form>
       ) : (
         <div
           onClick={enableEditing}
-          className="w-full text-sm px-2.5 py-1 h-7 font-medium border-transparent"
+          className="w-full text-sm px-2.5 py-1 h-7 font-medium border-transparent cursor-pointer hover:text-white transition-colors"
         >
           {title}
         </div>

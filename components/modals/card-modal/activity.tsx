@@ -11,10 +11,10 @@ interface ICardModalActivityProps {
 const CardModalActivity = ({ items }: ICardModalActivityProps) => {
   return (
     <div className="flex items-start gap-x-3 w-full">
-      <Activity className="h-5 w-5 mt-0.5 text-neutral-700" />
+      <Activity className="h-5 w-5 mt-0.5" style={{ color: "rgba(0,229,153,0.6)" }} />
       <div className="w-full">
-        <p className="font-semibold text-neutral-700 mb-2">Activity</p>
-        <ol className="mt-2 space-y-4">
+        <p className="font-medium text-sm text-white/70 mb-2">Activity</p>
+        <ol className="mt-2 space-y-1 divide-y" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
           {items.map((item) => (
             <ActivityItem data={item} key={item.id} />
           ))}
@@ -27,10 +27,10 @@ const CardModalActivity = ({ items }: ICardModalActivityProps) => {
 CardModalActivity.Skeleton = function CardModalActivitySkeleton() {
   return (
     <div className="flex items-start gap-x-3 w-full">
-      <Skeleton className="h-6 w-6 bg-neutral-200" />
+      <Skeleton className="h-6 w-6 bg-white/10" />
       <div className="w-full">
-        <Skeleton className="w-24 h-6 mb-2 bg-neutral-200" />
-        <Skeleton className="w-full h-10 bg-neutral-200" />
+        <Skeleton className="w-24 h-5 mb-2 bg-white/10" />
+        <Skeleton className="w-full h-10 bg-white/10" />
       </div>
     </div>
   );

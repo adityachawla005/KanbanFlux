@@ -35,7 +35,8 @@ const ListItem = ({ index, data }: IListItemProps) => {
           className="shrink-0 h-full w-[272px] select-none"
         >
           <div
-            className="w-full rounded-md bg-[#f1f2f4] shadow-md pb-2"
+            className="w-full rounded-lg pb-2 shadow-xl"
+            style={{ background: "rgba(15,17,21,0.92)", border: "1px solid rgba(255,255,255,0.07)" }}
             {...provided.dragHandleProps}
           >
             <ListHeader onAddCard={enableEditing} data={data} />

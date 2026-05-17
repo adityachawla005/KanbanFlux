@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: kanbanflux-ml
+    runtime: python
+    pythonVersion: "3.11"
+    buildCommand: pip install -r requirements.txt && python -m spacy download en_core_web_sm
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 60 --preload
+    envVars:
+      - key: CORS_ORIGINS
+        value: https://your-kanbanflux-domain.vercel.app

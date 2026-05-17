@@ -16,7 +16,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     return { error: "Unauthorized." };
   }
 
-  const { title, listId, mediaUrl, mediaType } = data;
+  const { title, listId, description, mediaUrl, mediaType } = data;
 
   try {
     const list = await db.list.findUnique({
@@ -45,6 +45,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     // Type assertion to work with Prisma's strict types
     const cardData = {
       ...baseCardData,
+      ...(description && { description }),
       ...(mediaUrl && mediaUrl.trim() !== "" && { mediaUrl }),
       ...(mediaType && { mediaType }),
     } as any;

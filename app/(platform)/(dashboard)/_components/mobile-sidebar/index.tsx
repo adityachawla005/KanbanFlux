@@ -28,14 +28,14 @@ const MobileSidebar = () => {
     <>
       <Button
         onClick={onOpen}
-        className="block md:hidden mr-2"
+        className="block md:hidden mr-2 text-white/60 hover:text-white hover:bg-white/5"
         variant="ghost"
         size="sm"
       >
         <Menu className="h-4 w-4" />
       </Button>
       <Sheet open={isOpen} onOpenChange={onClose}>
-        <SheetContent side="left" className="p-2 pt-10">
+        <SheetContent side="left" className="p-2 pt-10" style={{ background: "#0f0f0f", borderRight: "1px solid rgba(255,255,255,0.06)" }}>
           <Sidebar storageKey="t-sidebar-mobile-state" />
         </SheetContent>
       </Sheet>

@@ -1,7 +1,6 @@
 "use client";
 
 import { stripeRedirect } from "@/actions/stripe-redirect";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useAction } from "@/hooks/use-action";
 import useProModal from "@/hooks/use-pro-modal";
@@ -12,47 +11,45 @@ import { toast } from "sonner";
 const ProModal = () => {
   const { onClose, isOpen } = useProModal();
   const { execute, isLoading } = useAction(stripeRedirect, {
-    onSuccess: (data) => {
-      window.location.href = data;
-    },
-    onError: (error) => {
-      toast.error(error);
-    },
+    onSuccess: (data) => { window.location.href = data; },
+    onError: (error) => toast.error(error),
   });
-
-  const onUpgradde = () => {
-    execute({});
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md p-0 overflow-hidden">
-        <div className="aspect-video relative flex items-center justify-center">
-          <Image src={"/hero.svg"} alt="Hero" className="object-cover" fill />
+      <DialogContent
+        className="max-w-md p-0 overflow-hidden border-white/8"
+        style={{ background: "#0f1117" }}
+      >
+        <div className="aspect-video relative">
+          <Image src="/hero.svg" alt="KanbanFlux Pro" className="object-cover" fill />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1117] to-transparent" />
         </div>
-        <div className="text-neutral-700 mx-auto space-y-6 p-6">
-          <h2 className="font-semibold text-xl">
-            Upgrade to KanbanFlux Today!
-          </h2>
-          <p className="text-xs font-semibold text-neutral-600">
-            Explore the best of KanbanFlux
-          </p>
-          <div className="pl-3">
-            <ul className="text-sm list-disc">
-              <li>Unlimited Boards</li>
-              <li>Advanced Checklists</li>
-              <li>Admin and security features</li>
-              <li>And more!</li>
-            </ul>
+        <div className="px-6 pb-6 space-y-5">
+          <div>
+            <h2 className="font-semibold text-lg text-white tracking-tight">
+              Upgrade to KanbanFlux Pro
+            </h2>
+            <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+              Unlock everything for your workspace.
+            </p>
           </div>
-          <Button
-            onClick={onUpgradde}
+          <ul className="space-y-2">
+            {["Unlimited boards", "Advanced checklists", "Admin & security features", "Priority support"].map((item) => (
+              <li key={item} className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#00e599" }} />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={() => execute({})}
             disabled={isLoading}
-            className="w-full"
-            variant="primary"
+            className="w-full rounded-[6px] font-medium py-2.5 transition-colors disabled:opacity-50"
+            style={{ background: "#00e599", color: "#050505", fontSize: "13px" }}
           >
-            Upgrade
-          </Button>
+            {isLoading ? "Redirecting..." : "Upgrade now"}
+          </button>
         </div>
       </DialogContent>
     </Dialog>

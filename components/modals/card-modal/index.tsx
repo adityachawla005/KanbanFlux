@@ -52,7 +52,7 @@ const CardModal = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="outline-none">
+      <DialogContent className="outline-none border-white/8" style={{ background: "#0f1117", color: "#fff" }}>
         {cardData ? (
           <CardModalHeader data={cardData} />
         ) : (

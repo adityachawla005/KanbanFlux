@@ -16,12 +16,8 @@ interface ICardModalHeaderProps {
 const CardModalHeader = ({ data }: ICardModalHeaderProps) => {
   const { execute } = useAction(updateCard, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: ["card", data.id],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ["card-logs", data.id],
-      });
+      queryClient.invalidateQueries({ queryKey: ["card", data.id] });
+      queryClient.invalidateQueries({ queryKey: ["card-logs", data.id] });
       toast.success(`Card renamed to "${data.title}".`);
     },
     onError: (error) => {
@@ -33,22 +29,17 @@ const CardModalHeader = ({ data }: ICardModalHeaderProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
-  const onBlur = () => {
-    inputRef.current?.form?.requestSubmit();
-  };
+  const onBlur = () => inputRef.current?.form?.requestSubmit();
 
   const onSubmit = (formData: FormData) => {
     const title = formData.get("title") as string;
-    // const description = formData.get("description") as string;
-
-    if (title === data.title) {
-      return;
-    }
+    if (title === data.title) return;
     execute({ title, id: data.id });
   };
+
   return (
     <div className="flex items-start gap-x-3 mb-6 w-full">
-      <Layout className="h-5 w-5 mt-1 text-neutral-700" />
+      <Layout className="h-5 w-5 mt-1" style={{ color: "rgba(0,229,153,0.6)" }} />
       <div className="w-full">
         <form action={onSubmit}>
           <FormInput
@@ -56,11 +47,11 @@ const CardModalHeader = ({ data }: ICardModalHeaderProps) => {
             ref={inputRef}
             onBlur={onBlur}
             defaultValue={title}
-            className="font-semibold text-xl px-1 text-neutral-700 bg-transparent border-transparent relative -left-1.5 w-[95%] focus-visible:bg-white focus-visible:border-input mb-0.5 truncate"
+            className="font-semibold text-xl px-1 text-white bg-transparent border-transparent relative -left-1.5 w-[95%] focus-visible:bg-white/5 focus-visible:border-white/20 mb-0.5 truncate"
           />
         </form>
-        <p className="text-sm text-muted-foreground">
-          in list <span className="underline">{data.list.title}</span>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
+          in list <span className="underline text-white/50">{data.list.title}</span>
         </p>
       </div>
     </div>
@@ -70,10 +61,10 @@ const CardModalHeader = ({ data }: ICardModalHeaderProps) => {
 CardModalHeader.Skeleton = function CardModalHeaderSkeleton() {
   return (
     <div className="flex items-start gap-x-3 mb-6">
-      <Skeleton className="h-6 w-6 mt-1 bg-neutral-200" />
+      <Skeleton className="h-6 w-6 mt-1 bg-white/10" />
       <div>
-        <Skeleton className="w-24 h-6 mb-1 bg-neutral-200" />
-        <Skeleton className="w-12 h-4 bg-neutral-200" />
+        <Skeleton className="w-24 h-6 mb-1 bg-white/10" />
+        <Skeleton className="w-12 h-4 bg-white/10" />
       </div>
     </div>
   );

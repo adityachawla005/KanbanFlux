@@ -1,5 +1,3 @@
-
-
 import { defaultImages } from "@/constants/images";
 import { unsplash } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
@@ -15,31 +13,34 @@ interface IFormPickerProps {
   errors?: Record<string, string[] | undefined>;
 }
 
+const withTimeout = <T,>(promise: Promise<T>, ms: number): Promise<T> =>
+  Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error("timeout")), ms)
+    ),
+  ]);
+
 const FormPicker = ({ id, errors }: IFormPickerProps) => {
-  const [images, setImages] = useState<Array<Record<string, any>>>([]);
-  const [isLoading, setIsloading] = useState(true);
+  const [images, setImages] = useState<Array<Record<string, any>>>(defaultImages);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedImgId, setSelectedImgId] = useState(null);
   const { pending } = useFormStatus();
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const result = await unsplash.photos.getRandom({
-          collectionIds: ["317099"],
-          count: 9,
-        });
-        if (result && result.response) {
-          const responseImages = result.response as Array<Record<string, any>>;
-          setImages(responseImages);
-        } else {
-          setImages(defaultImages);
-          console.error("Failed to get images from Unsplash.");
+        const result = await withTimeout(
+          unsplash.photos.getRandom({ collectionIds: ["317099"], count: 9 }),
+          6000
+        );
+        if (result?.response) {
+          setImages(result.response as Array<Record<string, any>>);
         }
-      } catch (error) {
-        console.error(error);
-        setImages(defaultImages);
+      } catch {
+        // network timeout or rate limit — defaultImages already set
       } finally {
-        setIsloading(false);
+        setIsLoading(false);
       }
     };
     fetchImages();
@@ -48,7 +49,7 @@ const FormPicker = ({ id, errors }: IFormPickerProps) => {
   if (isLoading) {
     return (
       <div className="p-6 flex items-center justify-center">
-        <Loader2 className="h-6 w-6 text-sky-700 animate-spin" />
+        <Loader2 className="h-6 w-6 animate-spin" style={{ color: "#00e599" }} />
       </div>
     );
   }
@@ -60,9 +61,10 @@ const FormPicker = ({ id, errors }: IFormPickerProps) => {
           <div
             key={image.id}
             className={cn(
-              "cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted",
+              "cursor-pointer relative aspect-video group hover:opacity-80 transition rounded-sm overflow-hidden",
               pending && "opacity-50 hover:opacity-50 cursor-auto"
             )}
+            style={{ background: "rgba(255,255,255,0.06)" }}
             onClick={() => {
               if (pending) return;
               setSelectedImgId(image.id);
@@ -79,7 +81,7 @@ const FormPicker = ({ id, errors }: IFormPickerProps) => {
               value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.urls.html}|${image.user.name}`}
             />
             {selectedImgId === image.id && (
-              <div className="absolute top-0  h-full w-full bg-black/30 flex items-center justify-center z-10">
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-10">
                 <Check className="h-4 w-4 text-white" />
               </div>
             )}
@@ -87,12 +89,12 @@ const FormPicker = ({ id, errors }: IFormPickerProps) => {
               fill
               alt="Unsplash image"
               src={image.urls.thumb}
-              className="object-cover rounded-sm"
+              className="object-cover"
             />
             <Link
               href={image.links.html}
               target="_blank"
-              className="opacity-0 group-hover:opacity-100 w-full absolute bottom-0 text-[8px] truncate text-white hover:underline p-1 bg-black/50 z-20"
+              className="opacity-0 group-hover:opacity-100 w-full absolute bottom-0 text-[8px] truncate text-white hover:underline p-1 bg-black/60 z-20"
             >
               {image.user.name}
             </Link>

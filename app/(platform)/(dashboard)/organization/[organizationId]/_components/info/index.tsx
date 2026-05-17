@@ -17,19 +17,23 @@ const Info = ({ isPro }: IInfoProps) => {
   }
   return (
     <div className="flex items-center gap-x-4">
-      <div className="w-[60px] h-[60px] relative">
+      <div className="w-[52px] h-[52px] relative">
         <Image
           fill
           alt="Organization"
           src={organization?.imageUrl!}
-          className="rounded-md object-cover"
+          className="rounded-lg object-cover"
         />
       </div>
       <div className="space-y-1">
-        <p className="font-semibold text-xl">{organization?.name}</p>
-        <div className="flex items-center text-xs text-muted-foreground">
-          <CreditCard className="h-3 w-3 mr-1 " />
-          {isPro ? "Pro" : "Free"}
+        <p className="font-semibold text-lg text-white tracking-tight">{organization?.name}</p>
+        <div className="flex items-center gap-1.5 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+          <CreditCard className="h-3 w-3" />
+          {isPro ? (
+            <span style={{ color: "#00e599" }}>Pro</span>
+          ) : (
+            <span>Free</span>
+          )}
         </div>
       </div>
     </div>
@@ -39,15 +43,12 @@ const Info = ({ isPro }: IInfoProps) => {
 Info.Skeleton = function SkeletonInfo() {
   return (
     <div className="flex items-center gap-x-4">
-      <div className="w-[60px] h-[60px] relative">
-        <Skeleton className="w-full h-full absolute" />
+      <div className="w-[52px] h-[52px] relative">
+        <Skeleton className="w-full h-full absolute rounded-lg bg-white/10" />
       </div>
       <div className="space-y-2">
-        <Skeleton className="h-10 w-[200px]" />
-        <div className="flex items-center">
-          <Skeleton className="h-4 w-4 mr-2" />
-          <Skeleton className="h-4 w-[100px]" />
-        </div>
+        <Skeleton className="h-5 w-[180px] bg-white/10" />
+        <Skeleton className="h-3.5 w-[80px] bg-white/10" />
       </div>
     </div>
   );
