@@ -40,6 +40,6 @@ export async function POST(req: NextRequest) {
     if (e.name === "TimeoutError") {
       return NextResponse.json({ error: "ML backend timed out" }, { status: 504 });
     }
-    return NextResponse.json({ error: "ML backend unreachable. Is it running on port 5001?" }, { status: 503 });
+    return NextResponse.json({ error: "ML backend unreachable" }, { status: 503 });
   }
 }
