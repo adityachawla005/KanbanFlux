@@ -170,12 +170,6 @@ export default function MarketingPage() {
                 animation: "pulseGlow 2.6s ease-in-out infinite",
               }}
             />
-            <span
-              className="font-mono uppercase tracking-[0.2em]"
-              style={{ fontSize: "10px", color: "rgba(0,229,153,0.65)" }}
-            >
-              AI-powered kanban
-            </span>
           </div>
 
           {/* H1 */}
