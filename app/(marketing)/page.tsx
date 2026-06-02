@@ -157,20 +157,6 @@ export default function MarketingPage() {
         {/* ── Copy ── */}
         <section className="relative z-10 flex flex-col justify-center min-h-screen px-8 md:px-16 lg:px-24 pt-16">
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 mb-9 w-fit">
-            <span
-              style={{
-                display: "inline-block",
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                background: "#00e599",
-                boxShadow: "0 0 0 2px rgba(0,229,153,0.15), 0 0 10px rgba(0,229,153,0.8)",
-                animation: "pulseGlow 2.6s ease-in-out infinite",
-              }}
-            />
-          </div>
 
           {/* H1 */}
           <h1
