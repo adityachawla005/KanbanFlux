@@ -137,7 +137,7 @@ export const Features = () => (
               style={{ height: "2px", background: "rgba(255,255,255,0.05)" }}
             >
               <div
-                className="h-full w-0 rounded-full transition-[width] duration-[700ms] ease-out group-hover:w-full"
+                className="h-full w-0 rounded-full transition-[width] duration-700 ease-out group-hover:w-full"
                 style={{
                   background: "linear-gradient(90deg, rgba(0,229,153,0.4), #00e599)",
                   boxShadow: "0 0 8px rgba(0,229,153,0.5)",
