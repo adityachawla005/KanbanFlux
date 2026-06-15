@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Features } from "./_components/features";
+import { Marquee } from "./_components/marquee";
 
 const BARS = [
   16, 26, 14, 38, 20, 50, 16, 34, 24, 46,
@@ -53,33 +55,36 @@ function barStyle(i: number, h: number): React.CSSProperties {
   };
 }
 
-const FEATURES = [
+const PLANS = [
   {
-    icon: (
-      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z" />
-      </svg>
-    ),
-    label: "AI Extraction",
-    body: "Paste meeting notes, Slack threads, or emails. spaCy NLP pulls out every task, owner, and deadline automatically.",
+    name: "Free",
+    price: "$0",
+    period: "/mo",
+    body: "For trying things out and solo boards.",
+    features: ["1 workspace", "Up to 3 boards", "AI extraction — 20 runs/mo", "Community support"],
+    cta: "Start for free",
+    href: "/sign-up",
+    highlight: false,
   },
   {
-    icon: (
-      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
-      </svg>
-    ),
-    label: "Instant Boards",
-    body: "Extracted tasks become draggable Kanban cards in one click — sorted by list, assignee, or priority.",
+    name: "Pro",
+    price: "$12",
+    period: "/mo",
+    body: "For teams that live in their boards.",
+    features: ["Unlimited boards", "Unlimited AI extraction", "Voice notes & attachments", "Priority support"],
+    cta: "Get started",
+    href: "/sign-up",
+    highlight: true,
   },
   {
-    icon: (
-      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
-      </svg>
-    ),
-    label: "Voice & Media",
-    body: "Record voice notes or attach files directly to any AI-generated card before it lands on the board.",
+    name: "Enterprise",
+    price: "Custom",
+    period: "",
+    body: "For organizations with scale & security needs.",
+    features: ["SSO & SAML", "Advanced permissions", "Audit logs", "Dedicated success manager"],
+    cta: "Contact sales",
+    href: "/sign-up",
+    highlight: false,
   },
 ];
 
@@ -222,73 +227,109 @@ export default function MarketingPage() {
       </div>
 
       {/* ── FEATURES STRIP ───────────────────────────── */}
-      <section className="relative z-10 px-6 md:px-16 lg:px-24 pb-28">
-        <div
-          className="max-w-screen-lg mx-auto"
-          style={{
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            paddingTop: "64px",
-          }}
-        >
-          {/* Section label */}
-          <p
-            className="font-mono uppercase tracking-[0.2em] mb-12"
-            style={{ fontSize: "10px", color: "rgba(255,255,255,0.2)" }}
+      <section id="features" className="relative z-10 px-6 md:px-16 lg:px-24 pb-10 scroll-mt-[52px]">
+        {/* Sliding separator strip */}
+        <div className="-mx-6 md:-mx-16 lg:-mx-24" style={{ marginTop: "32px", marginBottom: "56px" }}>
+          <Marquee
+            variant="strip"
+            items={[
+              "Turn talk into action",
+              "Notes in, boards out",
+              "AI-powered Kanban",
+              "Built for teams",
+            ]}
+            duration={52}
+          />
+        </div>
+        <div className="max-w-screen-lg mx-auto">
+          <h2
+            className="font-semibold text-white mb-12"
+            style={{ fontSize: "clamp(26px, 3vw, 34px)", letterSpacing: "-0.03em", maxWidth: "520px" }}
           >
-            What it does
-          </p>
+            Everything you need to turn talk into action.
+          </h2>
 
-          {/* Cards grid */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-3"
-            style={{
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
+          {/* Interactive feature grid — hover lights the tile, fills a green bar, slides in an arrow */}
+          <Features />
+        </div>
+      </section>
+
+      {/* ── PRICING ──────────────────────────────────── */}
+      <section id="pricing" className="relative z-10 px-6 md:px-16 lg:px-24 pb-32 scroll-mt-[52px]">
+        {/* Sliding separator (ghost ticker) — tilted on an incline */}
+        <div
+          className="-mx-6 md:-mx-16 lg:-mx-24 overflow-hidden"
+          style={{ marginTop: "12px", marginBottom: "56px", paddingTop: "30px", paddingBottom: "30px" }}
+        >
+          <div style={{ transform: "rotate(-3deg)", width: "112%", marginLeft: "-6%" }}>
+            <Marquee
+              items={[
+                "Free to start",
+                "No credit card",
+                "Cancel anytime",
+                "Upgrade when ready",
+              ]}
+              duration={58}
+            />
+          </div>
+        </div>
+        <div className="max-w-screen-lg mx-auto">
+          <h2
+            className="font-semibold text-white mb-12"
+            style={{ fontSize: "clamp(26px, 3vw, 34px)", letterSpacing: "-0.03em" }}
           >
-            {FEATURES.map((f, idx) => (
+            Simple, transparent pricing.
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {PLANS.map((p) => (
               <div
-                key={idx}
-                className="flex flex-col gap-5 p-8"
+                key={p.name}
+                className="flex flex-col p-7 rounded-[10px]"
                 style={{
                   background: "#080808",
-                  borderRight: idx < 2 ? "1px solid rgba(255,255,255,0.06)" : undefined,
-                  position: "relative",
+                  border: p.highlight
+                    ? "1px solid rgba(0,229,153,0.35)"
+                    : "1px solid rgba(255,255,255,0.06)",
+                  boxShadow: p.highlight ? "0 0 60px rgba(0,229,153,0.06)" : undefined,
                 }}
               >
-                {/* Top accent line */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: "32px",
-                    width: "32px",
-                    height: "1px",
-                    background: "rgba(0,229,153,0.45)",
-                  }}
-                />
+                <p className="font-medium text-white mb-1" style={{ fontSize: "14px", letterSpacing: "-0.02em" }}>
+                  {p.name}
+                </p>
+                <p style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.32)", lineHeight: 1.6, marginBottom: "20px" }}>
+                  {p.body}
+                </p>
 
-                <span style={{ color: "rgba(0,229,153,0.6)", marginTop: "8px" }}>
-                  {f.icon}
-                </span>
-                <div>
-                  <p
-                    className="font-medium text-white mb-2.5"
-                    style={{ fontSize: "13.5px", letterSpacing: "-0.02em" }}
-                  >
-                    {f.label}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      color: "rgba(255,255,255,0.32)",
-                      lineHeight: 1.68,
-                    }}
-                  >
-                    {f.body}
-                  </p>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="font-semibold text-white" style={{ fontSize: "30px", letterSpacing: "-0.04em" }}>
+                    {p.price}
+                  </span>
+                  <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)" }}>{p.period}</span>
                 </div>
+
+                <ul className="flex flex-col gap-3 mb-8">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5" style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.5)" }}>
+                      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#00e599" strokeWidth={2.4} className="shrink-0 mt-0.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href={p.href}
+                  className="mt-auto inline-flex items-center justify-center rounded-[6px] font-medium transition-colors"
+                  style={
+                    p.highlight
+                      ? { fontSize: "13px", padding: "9px 16px", background: "#00e599", color: "#050505" }
+                      : { fontSize: "13px", padding: "9px 16px", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }
+                  }
+                >
+                  {p.cta}
+                </Link>
               </div>
             ))}
           </div>

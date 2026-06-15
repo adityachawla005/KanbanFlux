@@ -3,7 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const NAV = ["Product", "Solutions", "Docs", "Pricing"];
+const NAV: { label: string; href: string; external?: boolean }[] = [
+  { label: "Product", href: "/#features" },
+  { label: "Solutions", href: "/#features" },
+  { label: "Docs", href: "https://github.com/adityachawla005/KanbanFlux#readme", external: true },
+  { label: "Pricing", href: "/#pricing" },
+];
 
 export const Navbar = () => (
   <nav
@@ -33,8 +38,9 @@ export const Navbar = () => (
       <div className="hidden md:flex items-center gap-7">
         {NAV.map((l) => (
           <Link
-            key={l}
-            href="/"
+            key={l.label}
+            href={l.href}
+            {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="transition-colors duration-150"
             style={{ fontSize: "13px", color: "rgba(255,255,255,0.38)" }}
             onMouseEnter={(e) =>
@@ -44,7 +50,7 @@ export const Navbar = () => (
               ((e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.38)")
             }
           >
-            {l}
+            {l.label}
           </Link>
         ))}
       </div>

@@ -102,3 +102,9 @@ body,
   0%, 100% { transform: scaleY(0.94); filter: brightness(0.88); }
   50%       { transform: scaleY(1.04); filter: brightness(1.12); }
 }
+
+/* Dim background marquee — slides one full track width then loops seamlessly */
+@keyframes marqueeSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

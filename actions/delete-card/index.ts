@@ -20,7 +20,7 @@ async function deleteAzureBlobs(urls: string[]): Promise<void> {
   if (urls.length === 0) {
     return;
   }
-  
+
   try {
     const { BlobServiceClient } = await import("@azure/storage-blob");
     const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
