@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -22,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>{children}</body>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>{children}        <Script id="visus-init" strategy="afterInteractive">{`window.__VISUS_SITE_ID__="cmtj4dqtx0005e21x62vbdddt";window.__VISUS_API__="https://visus-m49n.onrender.com";`}</Script>
+        <Script src="https://visus-m49n.onrender.com/tracker.js" strategy="afterInteractive" />
+      </body>
     </html>
   );
 }
